@@ -1,3 +1,5 @@
+// This file call the database.sql file to drop, create, use and build the database
+
 require("dotenv").config();
 const fs = require("fs");
 const mysql = require("mysql2/promise");
