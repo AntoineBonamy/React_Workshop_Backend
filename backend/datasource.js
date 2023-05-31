@@ -1,5 +1,7 @@
-require("dotenv").config();
-const mysql = require ("mysql2/promise");
+require("dotenv").config(); // call dotenv (npm install dotenv)
+const mysql = require ("mysql2/promise"); // call mysql (npm install mysql2)
+
+// create a Pool to initialize db. It needs to create .env file
 
 const datasource = mysql.createPool({
     host: process.env.DB_HOST, // address of the server
@@ -9,6 +11,8 @@ const datasource = mysql.createPool({
     database: process.env.DB_NAME,
 })
 
+// launch connection to database
+
 datasource
   .getConnection()
   .then(() => {
@@ -17,5 +21,7 @@ datasource
   .catch((err) => {
     console.error(err);
   });
+
+// and export
 
   module.exports = datasource;

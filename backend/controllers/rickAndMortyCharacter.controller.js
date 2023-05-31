@@ -1,9 +1,11 @@
+// This file create all the routes in details
+
 const datasource = require("../datasource");
 
 const getAllCharacters = (req, res) => {
   datasource
-    .query("SELECT * FROM rickcharacter")
-    .then(([character]) => res.json(character))
+    .query("SELECT * FROM rickcharacter") // sql request
+    .then(([character]) => res.json(character)) // take the response
     .catch((err) => {
       console.error(err);
       res.status(500).send("Error retrieving data from database");
@@ -11,7 +13,7 @@ const getAllCharacters = (req, res) => {
 };
 
 const getCharacterById = (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id); // you need a const id to stock the url param and use it
   datasource
     .query("SELECT * FROM rickcharacter WHERE id = ?", [id])
     .then(([character]) => {
@@ -24,7 +26,7 @@ const getCharacterById = (req, res) => {
 };
 
 const createCharacter = (req, res) => {
-  const { nom, species } = req.body;
+  const { nom, species } = req.body; // you need a const to stock the body request and create the new object
   datasource
     .query("INSERT INTO rickcharacter (nom, species) VALUES (?,?)", [
       nom,
